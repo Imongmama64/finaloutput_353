@@ -3,24 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louie Store</title>
+    <title>Email Entry Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="email"] {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Button is hidden initially */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<body style="background-color: #4CAF50; color: white; font-family: Arial, sans-serif; text-align: center; padding: 50px 0; margin: 0;">
+<body>
 
-    <header>
-        <h1 style="font-size: 3em; margin-bottom: 20px;">Welcome to Louie Store!</h1>
-        <h2 style="font-size: 2em; margin-bottom: 20px;">Your one-stop shop for everything cool!</h2>
-    </header>
+<div class="container">
+    <h1>Welcome to the Email Game!</h1>
+    <p>Enter your email below:</p>
+    <input type="email" id="emailInput" placeholder="Enter your email">
+    <br>
+    <button id="redirectButton" onclick="window.location.href='https://www.example.com';">Click to Visit Website</button>
+</div>
 
-    <main>
-        <a href="#" style="background-color: #FF5722; color: white; padding: 15px 30px; font-size: 1.2em; text-decoration: none; border: none; cursor: pointer; border-radius: 5px;">
-            Shop Now
-        </a>
-    </main>
+<script>
+    // Get the input field and button elements
+    const emailInput = document.getElementById("emailInput");
+    const redirectButton = document.getElementById("redirectButton");
 
-    <footer style="margin-top: 50px; font-size: 1em;">
-        <p>&copy; 2024 Louie Store. All rights reserved.</p>
-    </footer>
+    // Listen for input event on the email field
+    emailInput.addEventListener("input", function() {
+        // Check if the input is a valid email
+        if (emailInput.value !== "" && validateEmail(emailInput.value)) {
+            // Show the button if the email is valid
+            redirectButton.style.display = "inline-block";
+        } else {
+            // Hide the button if the email is invalid or empty
+            redirectButton.style.display = "none";
+        }
+    });
+
+    // Function to validate email format
+    function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailPattern.test(email);
+    }
+</script>
 
 </body>
 </html>
